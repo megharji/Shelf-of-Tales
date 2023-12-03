@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelf of Tales</title>
+    <link rel="icon" href="https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGJvb2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60">
+    <link rel="stylesheet" href="/stylesheets/register.css">
+
+</head>
+<body>
+
+
+    <div class="container">
+      <%-include("partial/nav.ejs")%>
+      
+      <div class="container1">
+        <div class="dashboard">
+          <a href="/">Home</a>
+          <a href="/register">Register Books</a>
+          <a href="/books">Books</a>
+        </div>
+        <div class="container2">
+          <h1>Register Your Books </h1>
+          <form action="/register" method="POST">
+            <input class="inp1" type="text" placeholder="Author" name="author"> 
+    
+            <select class="sele1"  name="country">
+              <option value="">Select Country</option>
+              <% countryNames.forEach(function(c){%>
+                <option value="<%= c %>">
+                  <%= c %>
+                </option>
+              <%})%>
+            </select>
+    
+    
+            <input class="inp2"  type="text" placeholder="Img Link" name="imglink">
+    
+    
+            <select class="sele2" name="language">
+              <option value="">Select Language</option>
+              <% languageslist.forEach(function(l){%>
+                <option value="<%= l.name %>">
+                  <%= l.name %>
+                </option>
+              <%})%>
+            </select>
+            <input class="inp3"  type="text" placeholder="Book Link" name="link">
+            <input class="inp4" type="number" placeholder="Pages" name="pages">
+
+            <input  class="inp5" type="text" placeholder="Title" name="title">
+
+            <input  class="inp6" type="text" placeholder="Year Of Publication" name="publication">
+
+            <button>Register Book</button>
+          </form>
+        </div>
+        
+      </div>
+     
+    </div>
+  
+    
+
+
+    
+  <script>
+
+    var dashboard =  document.querySelector(".dashboard")
+    var icon =  document.querySelector("h4")
+    var check = 0
+
+    icon.addEventListener("click", function(){
+        if(check == 0){
+            dashboard.style.display = "flex"
+            icon.innerHTML =`<i class="ri-close-fill"></i>`                
+            check = 1
+        }else{
+            dashboard.style.display = "none"
+            icon.innerHTML =`<i class="ri-menu-line"></i>`
+            check = 0
+        }
+        
+    })
+
+  </script>
+</body>
+</html>
+
+
+<!---      
+-->

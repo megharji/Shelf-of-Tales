@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelf of Tales</title>
+    <link rel="icon" href="https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGJvb2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60">
+    <link rel="stylesheet" href="/stylesheets/books.css">
+
+</head>
+<body>
+    <%-include("partial/nav.ejs")%>
+    <div class="show-container">
+         <div class="dashboard">
+            <a href="/">Home</a>
+            <a href="/register">Register Books</a>
+            <a href="/books">Books</a>
+        </div>
+        <% if(books.length === 0){%>
+            <h1 style="color: rgb(255, 255, 255); text-align: center; font-size: 3vmax; margin-top: 15%;">No Books Registered</h1>
+        <%}%>
+        
+        <% books.forEach(function(book, idx){%>
+            <div class="book-card">
+                <img src="<%= book.imglink %>" alt="">
+            
+                <div class="book-card-body">
+                    
+                        <h1>
+                            <%= book.title %>
+                        </h1>
+
+                        <h3>By</h3>
+
+                        <h2>
+                            <%= book.author %>
+                        </h2>
+                        <a target="_blank" href="<%= book.link%>">Explore More</a>
+                        <p>
+                            <a href="/delete/<%= idx%>">Delete</a>
+                            <a href="/update/<%= idx%>">Update</a>
+
+                        </p>
+                    
+                </div>
+            </div>
+        <%})%>
+               
+            
+        
+
+    </div>
+
+
+    
+    <script>
+
+        var dashboard =  document.querySelector(".dashboard")
+        var icon =  document.querySelector("h4")
+        var check = 0
+    
+        icon.addEventListener("click", function(){
+            if(check == 0){
+                dashboard.style.display = "flex"
+                icon.innerHTML =`<i class="ri-close-fill"></i>`                
+                check = 1
+            }else{
+                dashboard.style.display = "none"
+                icon.innerHTML =`<i class="ri-menu-line"></i>`
+                check = 0
+            }
+            
+        })
+    
+    </script>
+</body>
+</html>
